@@ -1,0 +1,21 @@
+<html>
+    <body> 
+{% if course %}
+         <p><b>{{course.name}}</b><br>{{course.description}}</p>
+       
+{% endif %}
+        
+{% if modules %}
+    {% for module in modules %}
+        <p>
+            <h1>{{module.name}}</h1>
+            <a href="/course/view/{{course.pk}}/{{module.order}}">read</a>
+        </p>
+    {% endfor %}
+
+{% else %}
+       
+{% endif %}
+        
+    </body>          
+</html>

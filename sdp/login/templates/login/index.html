@@ -1,0 +1,69 @@
+{% url 'login:login' as the_url %}
+{% url 'login:create' as the_url2 %}
+{% url 'login:instructor' as the_url3 %}
+
+<html>
+    <head>
+    <style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #6A8C9F;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    li {
+        float: left;
+        border-left:1px solid #bbb;
+    }
+
+    li:first-child {
+        border-left: none;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .active {
+        background-color: #404d55;
+    }
+
+    .active:hover {
+        background-color: #111;
+    }
+    </style>
+    </head>
+
+    <body>
+    <ul>
+        <li><a><b>AB Credit (HK) Staff Development Platform</b></a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{the_url2}}'">Create User</a></li>
+    </ul>
+    <h2><font color="6A8C9F">Login Page</font></h2>
+</html>
+
+<form action="{{the_url}}" method="post" allgin = center>
+    {% csrf_token %}
+    <table>
+        {% for field in form %}
+        <tbody>
+          <tr>
+            <td>
+              <label for="{{ field.label }}" style="display:inline-block;vertical-align:middle">{{ field.label_tag }}</label>
+            </td>
+            <td>
+              {{ field }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    <input type="submit" value="send" />
+</form>

@@ -1,0 +1,55 @@
+{% url 'administrator:logout' as logout_url %}
+{% url 'administrator:edit_user' user_id as the_url %}
+{% url 'administrator:index' as index_url %}
+
+<html>
+    <head>
+    <style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #6A8C9F;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    li {
+        float: left;
+        border-left:1px solid #bbb;
+    }
+    
+    li:first-child {
+        border-left: none;
+    }
+    
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    .active {
+        background-color: #404d55;
+    }
+    
+    .active:hover {
+        background-color: #111;
+    }
+    </style>
+    </head>
+
+    <ul>
+        <li><a><b>AB Credit (HK) Staff Development Platform</b></a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{logout_url}}'">Logout</a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{index_url}}'">Homepage</a></li>
+    </ul>
+    <h2><font color="6A8C9F">Administrator: Edit User Page</font></h2>
+<form action="{{the_url}}" method="post" allgin = center>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Save" />
+</form>
+</html>

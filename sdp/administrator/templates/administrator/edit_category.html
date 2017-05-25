@@ -1,0 +1,11 @@
+{% url 'administrator:logout' as logout_url %}
+{% url 'administrator:create_category' as the_url %}
+{% url 'administrator:index' as index_url %}
+
+<html>
+<form action="{{the_url}}" method="post" allgin = center>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Save" />
+</form>
+</html>

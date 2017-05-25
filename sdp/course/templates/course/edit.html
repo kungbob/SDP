@@ -1,0 +1,7 @@
+{% url 'course:real_edit' course_id order_id as the_url %}
+<form action="{{the_url}}" method="post" allgin = center>
+    {% csrf_token %}
+    {{ form.media }}
+    {{form.as_p}}
+    <input type="submit" value="Save" />
+</form>

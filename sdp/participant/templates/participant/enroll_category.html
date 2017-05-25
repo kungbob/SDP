@@ -1,0 +1,80 @@
+{% url 'participant:logout' as the_url %}
+{% url 'participant:index' as index_url %}
+
+<html>
+    <head>
+    <style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #6A8C9F;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    li {
+        float: left;
+        border-left:1px solid #bbb;
+    }
+    
+    li:first-child {
+        border-left: none;
+    }
+    
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    .active {
+        background-color: #404d55;
+    }
+    
+    .active:hover {
+        background-color: #111;
+    }
+    </style>
+    </head>
+    
+    <ul>
+        <li><a><b>AB Credit (HK) Staff Development Platform</b></a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{the_url}}'">Logout</a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{index_url}}'">Homepage</a></li>
+    </ul>
+    <h3><font color="6A8C9F">You are now at: Participant - Course Page</font></h3>
+    <body>
+        
+    <table id="table_id" class="display">
+        <thead><tr><th>Course Code</th><th>Course Name</th><th>Enter</th></tr>
+    </thead>
+    <tbody>
+{% if courses %}
+    {% for course in courses %}
+        <tr><td>{{course.code}}</td><td>{{course.name}}</td><td><a href="{{course.id}}">enter</a></td></tr>
+    {% endfor %}
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+    </tbody>
+    </table>
+    </body>    
+    
+</html>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#table_id').DataTable();
+    });
+      
+</script>

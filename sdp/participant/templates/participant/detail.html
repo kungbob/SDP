@@ -1,0 +1,37 @@
+
+
+{% url 'participant:index' as index_url %}
+<html>
+    <body>
+    <button  onclick="location.href='{{index_url}}'">homepage</button>
+    <table id="table_id" class="display">
+    <thead><tr><th>Course Code</th><th>Course Name</th><th>status</th><th>Access</th></tr>
+    </thead>
+    <tbody>
+{% if record %}
+    {% for this_record in record %}
+        <tr><td>{{this_record.course.code}}</td><td>{{this_record.course.name}}</td><td>{{this_record.status}}</td><td><a href=""></a></td></tr>
+    {% endfor %}
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+    </tbody>
+    </table>
+        
+        <button onclick='location.href="enroll";'>Course List</button>
+    </body>    
+    
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#table_id').DataTable();
+    });
+      
+</script>

@@ -1,0 +1,60 @@
+{% url 'instructor:logout' as the_url2 %}
+{% url 'instructor:view_course' course_id as course_url %}
+{% url 'instructor:edit_module' course_id order_id as the_url %}
+{% url 'instructor:index' as index_url %}
+
+<html>
+    <head>
+    <style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #6A8C9F;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    li {
+        float: left;
+        border-left:1px solid #bbb;
+    }
+    
+    li:first-child {
+        border-left: none;
+    }
+    
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    .active {
+        background-color: #404d55;
+    }
+    
+    .active:hover {
+        background-color: #111;
+    }
+    </style>
+    </head>
+
+    <ul>
+        <li><a><b>AB Credit (HK) Staff Development Platform</b></a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{the_url2}}'">Logout</a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{course_url}}'">Course Page</a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{index_url}}'">Homepage</a></li>
+    </ul>
+    <h2><font color="6A8C9F">Instructor: Edit Module Page</font></h2>
+</html>
+
+<form action="{{the_url}}" method="post" allgin = center>
+    {% csrf_token %}
+    {{ form.media}}
+    {{form.as_p}}
+    <input type="submit" value="Save" />
+</form>
+

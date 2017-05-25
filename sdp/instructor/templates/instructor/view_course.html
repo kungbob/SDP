@@ -1,0 +1,69 @@
+{% url 'instructor:logout' as the_url %}
+{% url 'instructor:index' as index_url %}
+<html>
+    <head>
+    <style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #6A8C9F;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    li {
+        float: left;
+        border-left:1px solid #bbb;
+    }
+    
+    li:first-child {
+        border-left: none;
+    }
+    
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    .active {
+        background-color: #404d55;
+    }
+    
+    .active:hover {
+        background-color: #111;
+    }
+    </style>
+    </head>
+    <ul>
+        <li><a><b>AB Credit (HK) Staff Development Platform</b></a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{the_url}}'">Logout</a></li>
+        <li style="float:right"><a class="active" onclick="location.href='/instructor/create_module/{{course.pk}}';">Add New Module</a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{index_url}}'">Homepage</a></li>
+    </ul>
+    <body> 
+{% if course %}
+         <p><b><h2><font color="6A8C9F">Course Homepage: {{course.name}}</font></h2></b>
+         <b>Course Description:</b><br>{{course.description}}</p>
+       
+{% endif %}
+        
+{% if modules %}
+    {% for module in modules %}
+        <p>
+            <a href=/instructor/move_up/{{course.pk}}/{{module.order}}>move up</a>  <a href=/instructor/move_down/{{course.pk}}/{{module.order}}>move down</a><b>{{module.name}}</b>
+            <a href="{{module.order}}">read</a>   <a href="/instructor/edit/{{course.pk}}/{{module.order}}">edit</a>
+            
+        </p>
+        
+    {% endfor %}
+
+{% else %}
+        
+{% endif %}
+    </body>          
+</html>
+

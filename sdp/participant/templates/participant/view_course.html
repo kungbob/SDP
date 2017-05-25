@@ -1,0 +1,83 @@
+{% url 'participant:logout' as the_url %}
+{% url 'participant:index' as index_url %}
+
+<html>
+    <head>
+    <style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #6A8C9F;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    li {
+        float: left;
+        border-left:1px solid #bbb;
+    }
+    
+    li:first-child {
+        border-left: none;
+    }
+    
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    .active {
+        background-color: #404d55;
+    }
+    
+    .active:hover {
+        background-color: #111;
+    }
+    </style>
+    </head>
+    <ul>
+        <li><a><b>AB Credit (HK) Staff Development Platform</b></a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{the_url}}'">Logout</a></li>
+        <li style="float:right"><a class="active" onclick="location.href='{{index_url}}'">Homepage</a></li>
+    </ul>
+    <body> 
+{% if course %}
+         <p><b><h2><font color="6A8C9F">Course Homepage: {{course.name}}</font></h2></b>
+         <b>Course Description:</b><br>{{course.description}}</p>
+       
+{% endif %}
+        
+{% if modules %}
+    {% for module in modules %}
+        <p>
+            
+            <b>{{module.name}}</b>
+            
+            {% if record_num %}
+            
+                {% if module.order < record_num %}
+                <a href="{{module.order}}">read</a>
+                {% else %}
+    
+                <b>cannot be accessed now</b>
+                {% endif %}
+    
+            {% else %}
+    
+             <a href="{{module.order}}">read</a>
+    
+    
+            {% endif %}
+        </p>
+    {% endfor %}
+
+{% else %}
+       
+{% endif %}
+        
+    </body>          
+</html>

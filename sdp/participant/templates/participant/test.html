@@ -1,0 +1,13 @@
+
+{% url 'participant:index' as index_url %}
+
+<html>
+    <button  onclick="location.href='{{index_url}}'">homepage</button>
+<form action="/your-name/" method="post">
+    {% csrf_token %}
+    {{ form.media }}
+    {{form.as_p}}
+    
+    <input type="submit" value="Submit" />
+</form>
+</html>
